@@ -1,7 +1,34 @@
 use std::{fs, collections::{HashSet, HashMap}, char, ops::{RangeInclusive}};
 
 #[allow(dead_code)]
-pub fn day03(data_file: &str) {
+pub fn day03_part2(data_file: &str) {
+    let data: String =fs::read_to_string(data_file)
+        .expect("Should have been able to read the file");
+    let priorities = generate_priority_map();
+    let mut total: u64 = 0;
+    let mut data_iter = data.split("\n").peekable();
+    loop {
+        if data_iter.peek().is_none() {
+            break;
+        }
+        if data_iter.peek().unwrap() == &"" {
+            data_iter.next();
+            continue;
+        }
+        let elf0 = slice_to_set(data_iter.next().unwrap());
+        let elf1 = slice_to_set(data_iter.next().unwrap());
+        let elf2 = slice_to_set(data_iter.next().unwrap());
+        let intersection0: HashSet<char> = elf0.intersection(&elf1).copied().collect();
+        let intersection1: HashSet<char> = elf2.intersection(&intersection0).copied().collect();
+        let item_type = intersection1.iter().next().unwrap();
+        total += priorities[item_type];
+        println!("item_type {}", item_type);
+    }
+    println!("Total: {}", total);
+}
+
+#[allow(dead_code)]
+pub fn day03_part1(data_file: &str) {
     let data: String =fs::read_to_string(data_file)
         .expect("Should have been able to read the file");
     let mut characters: Vec<char> = Vec::new();
