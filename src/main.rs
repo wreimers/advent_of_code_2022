@@ -2,5 +2,5 @@ mod days;
 mod elf;
 
 fn main() {
-    days::day02("data/day02_data.txt");
+    days::day03("data/day03_data.txt");
 }
