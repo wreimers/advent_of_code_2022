@@ -16,15 +16,15 @@ pub fn day02(data_file: &str) {
     for line in data.split("\n") {
         match line {
             ""    => continue,
-            "A X" => score += ROCK     + DRAW, // Rock     v. Rock
-            "A Y" => score += PAPER    + WIN,  // Rock     v. Paper
-            "A Z" => score += SCISSORS + LOSE, // Rock     v. Scissors
-            "B X" => score += ROCK     + LOSE, // Paper    v. Rock
-            "B Y" => score += PAPER    + DRAW, // Paper    v. Paper
-            "B Z" => score += SCISSORS + WIN,  // Paper    v. Scissors
-            "C X" => score += ROCK     + WIN,  // Scissors v. Rock
-            "C Y" => score += PAPER    + LOSE, // Scissors v. Paper
-            "C Z" => score += SCISSORS + DRAW, // Scissors v. Scissors
+            "A X" => score += SCISSORS + LOSE,
+            "A Y" => score += ROCK     + DRAW,
+            "A Z" => score += PAPER    + WIN,
+            "B X" => score += ROCK     + LOSE,
+            "B Y" => score += PAPER    + DRAW,
+            "B Z" => score += SCISSORS + WIN,
+            "C X" => score += PAPER    + LOSE,
+            "C Y" => score += SCISSORS + DRAW,
+            "C Z" => score += ROCK     + WIN,
             _     => panic!("Invalid token in data file"),
         };
     }
