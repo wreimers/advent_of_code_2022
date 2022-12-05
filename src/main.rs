@@ -23,16 +23,27 @@ fn parse_data_file() -> Vec<Elf> {
     // let data_file: &str = "day01_testcase.txt";
     let data_file: &str = "day01_star01.txt";
     let mut elves: Vec<Elf>  = Vec::new();
-    let mut high_score: u64 = 0;
+    let mut high_score_0: u64 = 0;
+    let mut high_score_1: u64 = 0;
+    let mut high_score_2: u64 = 0;
     let data: String =fs::read_to_string(data_file)
         .expect("Should have been able to read the file");
     let mut elf: Elf = Elf { food: Vec::new() };
     for line in data.split("\n") {
         if line == "" {
             if elf.food_count() > 0 {
-                println!("This elf is carrying {} food items worth {} calories.", elf.food_count(), elf.total_calories());
-                if elf.total_calories() > high_score {
-                    high_score = elf.total_calories();
+                // println!("This elf is carrying {} food items worth {} calories.", elf.food_count(), elf.total_calories());
+                if elf.total_calories() > high_score_0 {
+                    high_score_2 = high_score_1;
+                    high_score_1 = high_score_0;
+                    high_score_0 = elf.total_calories();
+                }
+                else if elf.total_calories() > high_score_1 {
+                    high_score_2 = high_score_1;
+                    high_score_1 = elf.total_calories();
+                }
+                else if elf.total_calories() > high_score_2 {
+                    high_score_2 = elf.total_calories();
                 }
                 elves.push(elf.clone());
             }
@@ -40,9 +51,10 @@ fn parse_data_file() -> Vec<Elf> {
             continue;
         }
         elf.add_food(line.trim().parse().expect("Wanted a number"));
-        println!("{}", line);
+        // println!("{}", line);
     }
-    println!("High score: {}", high_score);
+    println!("High scores: {} {} {}", high_score_0, high_score_1, high_score_2);
+    println!("Sum: {}", high_score_0 +high_score_1 + high_score_2);
 
     elves
 }
