@@ -1,5 +1,5 @@
 use std::fs;
-use crate::elf::Elf;
+use crate::lib::Elf;
 
 #[allow(dead_code)]
 pub fn day01(data_file: &str) {

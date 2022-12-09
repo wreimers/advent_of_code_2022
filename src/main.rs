@@ -1,7 +1,7 @@
 mod days;
-mod elf;
+mod lib;
 
 fn main() {
-    // days::day04_part2("data/day04_testcase.txt");
-    days::day04_part2("data/day04_data.txt");
+    days::day05_part1("data/day05_testcase.txt");
+    // days::day05_part2("data/day05_data.txt");
 }
